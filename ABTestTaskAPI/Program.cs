@@ -21,6 +21,10 @@ namespace ABTestTaskAPI
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+
+                    var port = Environment.GetEnvironmentVariable("PORT");
+                    if (!string.IsNullOrEmpty(port))
+                        webBuilder.UseUrls("http://*:" + port);
                 });
     }
 }
