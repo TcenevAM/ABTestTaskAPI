@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ABTestTaskAPI.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20210818102126_InitialMigration")]
+    [Migration("20210823130708_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
