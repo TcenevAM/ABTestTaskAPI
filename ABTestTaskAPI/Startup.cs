@@ -27,6 +27,12 @@ namespace ABTestTaskAPI
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(o => o.AddPolicy("AllowAllCors", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             services.AddDbContext<UserContext>(opt => opt.UseNpgsql(Configuration.GetConnectionString("UserConnection")));
             services.AddTransient<IUsersRepo, SqlUsersRepo>();
             services.AddControllers();
@@ -44,6 +50,8 @@ namespace ABTestTaskAPI
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ABTestTaskAPI v1"));
             }
+
+            app.UseCors("AllowAllCors");
 
             app.UseHttpsRedirection();
 
