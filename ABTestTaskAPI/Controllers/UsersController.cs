@@ -15,34 +15,26 @@ namespace ABTestTaskAPI.Controllers
             repository = repo;
         }
 
-        // GET: api/<UsersController>
-        [Route("[controller]/[action]")]
+        // GET: api​/Users
         [HttpGet]
         public IEnumerable<User> GetAllUsers()
         {
             return repository.GetAllUsers();
         }
 
+        // GET: api​/Users/{id}
         [HttpGet]
-        [Route("[controller]/[action]")]
+        [Route("{id}")]
         public User GetUserById(int id)
         {
             return repository.GetUserById(id);
         }
 
-        // POST api/<UsersController>
+        // POST: api/Post
         [HttpPost]
-        public ActionResult<User> CreateNewUser(IEnumerable<User> newUsers)
+        public ActionResult<User> AddOrUpdateUsers(IEnumerable<User> users)
         {
-            foreach (var user in newUsers)
-            {
-                if (GetUserById(user.Id) != null)
-                {
-                    ModelState.AddModelError("Id", $"Id {user.Id} уже существует в бд");
-                    return BadRequest(ModelState);
-                }
-                repository.CreateNewUser(user);
-            }
+            repository.AddOrUpdateUsers(users);
             repository.SaveChanges();
             return Ok();
         }

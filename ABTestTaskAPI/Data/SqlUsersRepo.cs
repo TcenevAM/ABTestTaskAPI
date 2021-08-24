@@ -1,5 +1,8 @@
 ﻿using ABTestTaskAPI.Models;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
+using ABTestTaskAPI.extensions;
 using System.Linq;
 
 namespace ABTestTaskAPI.Data
@@ -11,14 +14,37 @@ namespace ABTestTaskAPI.Data
         {
             this.context = context;
         }
-        public void CreateNewUser(User user)
+
+        public void AddOrUpdateUsers(IEnumerable<User> users)
         {
-            context.Users.Add(user);
+            foreach(var user in users)
+            {
+                AddOrUpdate(user);
+            }
         }
 
-        public void CreateNewUsers(IEnumerable<User> users)
+        private void AddOrUpdate(User user)
         {
-            context.Users.AddRange(users);
+
+            context.Users.AddOrUpdate(user);
+
+            //switch (entry.State)
+            //{
+            //    case EntityState.Detached:
+            //        context.Set<User>().Add(user);
+            //        break;
+            //    case EntityState.Modified:
+            //        context.Set<User>().Update(user);
+            //        break;
+            //    case EntityState.Added:
+            //        context.Set<User>().Add(user);
+            //        break;
+            //    case EntityState.Unchanged:
+            //        //item already in db no need to do anything  
+            //        break;
+            //    default:
+            //        throw new ArgumentOutOfRangeException();
+            //}
         }
 
         public IEnumerable<User> GetAllUsers()
