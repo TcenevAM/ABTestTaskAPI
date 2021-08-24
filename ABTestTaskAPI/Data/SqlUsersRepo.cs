@@ -15,36 +15,9 @@ namespace ABTestTaskAPI.Data
             this.context = context;
         }
 
-        public void AddOrUpdateUsers(IEnumerable<User> users)
+        public void AddOrUpdateUser(User user)
         {
-            foreach(var user in users)
-            {
-                AddOrUpdate(user);
-            }
-        }
-
-        private void AddOrUpdate(User user)
-        {
-
             context.Users.AddOrUpdate(user);
-
-            //switch (entry.State)
-            //{
-            //    case EntityState.Detached:
-            //        context.Set<User>().Add(user);
-            //        break;
-            //    case EntityState.Modified:
-            //        context.Set<User>().Update(user);
-            //        break;
-            //    case EntityState.Added:
-            //        context.Set<User>().Add(user);
-            //        break;
-            //    case EntityState.Unchanged:
-            //        //item already in db no need to do anything  
-            //        break;
-            //    default:
-            //        throw new ArgumentOutOfRangeException();
-            //}
         }
 
         public IEnumerable<User> GetAllUsers()

@@ -7,7 +7,7 @@ namespace ABTestTaskAPI.Data
     {
         IEnumerable<User> GetAllUsers();
         bool SaveChanges();
-        void AddOrUpdateUsers(IEnumerable<User> users);
+        void AddOrUpdateUser(User users);
         User GetUserById(int id);
     }
 }

@@ -32,9 +32,9 @@ namespace ABTestTaskAPI.Controllers
 
         // POST: api/Post
         [HttpPost]
-        public ActionResult<User> AddOrUpdateUsers(IEnumerable<User> users)
+        public ActionResult<User> AddOrUpdateUser(User user)
         {
-            repository.AddOrUpdateUsers(users);
+            repository.AddOrUpdateUser(user);
             repository.SaveChanges();
             return Ok();
         }
