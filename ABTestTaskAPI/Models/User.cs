@@ -10,10 +10,8 @@ namespace ABTestTaskAPI.Models
         [Required]
         public int Id { get; set; }
         [Required]
-        [UserRegistationDateValidate]
         public DateTime RegistrationDate { get; set; }
         [Required]
-        [UserLastActivityDateValidate]
         public DateTime LastActivityDate { get; set; }
 
     }
