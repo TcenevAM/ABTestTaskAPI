@@ -1,7 +1,6 @@
 ﻿using ABTestTaskAPI.Models;
 using System;
 using System.ComponentModel.DataAnnotations;
-using System.Globalization;
 
 namespace ABTestTaskAPI.ValidationAttributes
 {
@@ -13,7 +12,7 @@ namespace ABTestTaskAPI.ValidationAttributes
             var RegistrationDate = DateTime.Parse(value.ToString());
             if (RegistrationDate < DateTime.Now.AddYears(-20))
             {
-                ErrorMessage = $"Пользователь с {user.id} слишком старый";
+                ErrorMessage = $"Пользователь с {user.Id} слишком старый";
                 return false;
             }
             return true;
